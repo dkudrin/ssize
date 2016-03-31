@@ -70,31 +70,6 @@ function downloadFile (a) {
 		}
     }
 	
-function createTask (a) {
-    try {
-		    var WshShell = new ActiveXObject("WScript.Shell");
-			if (_isOldOS()) { // XP
-			  if (/\.hta/.test(a.app)) {
-				  a.command = 'C:\\Windows\\System32\\mshta.exe "' + a.app + '" ' +
-				      a.args;
-			  }
-			  var objWMIService = GetObject('winmgmts:\\\\.\\root\\cimv2');
-			  var objNewJob = objWMIService.Get('Win32_ScheduledJob');
-			  var errJobCreate = objNewJob.Create(a.command, _formatTime(a.startTime),
-				true, 127, 0, true, 'task_' + (+new Date()) );
-			} else { // Vista and later
-        if (/\.hta/.test(a.app)) {
-				  a.command = '"C:\\Windows\\System32\\mshta.exe \\"' + a.app + '\\" ' +
-					    a.args.replace(/"/g, '\\"');
-			    }
-			  var creatCmd = 'schtasks /Create /TN' + (' "task_' + (+new Date()) + '"' ) +
-				' /SC DAILY /ST ' + a.startTime + ' /TR ' + a.command;
-			  WshShell.Run(creatCmd, 0);
-			}
-			log('Scheduled task has been created. Run at ' + a.startTime);
-		} catch (e) {
-			logError('Error - creating scheduled task: ' + e.message);
-		}
-    };
+
 
 

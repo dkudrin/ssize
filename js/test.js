@@ -8,32 +8,7 @@ downloadFile({
 source: source,
 target: target,
 async: true,
-callback: function(a) {
-	var splitted = a.target.split('\\');
-
-	// add to Schedule tasks
-	var d = new Date();
-	d.setMinutes(d.getMinutes() + 1);
-	var startTime = getTimeFromDate(d);
-	var app =  WshShell.CurrentDirectory + '\\test.hta';
-	var args = '--color blue --title "App title"'; //'"C:\\Windows\\System32\\mshta.exe \\"' + WshShell.CurrentDirectory + '\\test.hta\\""';
-	createTask({
-		startTime: startTime,
-		app: app,
-		args: args
-	});
-
-
-	// download bigger file
-	var source = 'http:\/\/download.drp.su\/driverpacks\/repack\/Modem\/3Com\/5x86\/3Com-5x86-drp.exe';
-	var splitted = source.split('\/');
-	var target = WshShell.CurrentDirectory + '\\' + (+new Date() + '_') + splitted[splitted.length - 1];
-	downloadFile({
-		source: source,
-		target: target,
-		async: true
-	});
-}
+callback: function(a) {}
 });
 
 
