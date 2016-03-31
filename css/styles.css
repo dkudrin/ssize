@@ -1,0 +1,12 @@
+#container div {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#container .message {
+	color: green;
+}
+
+#container .error {
+	color: red;
+}
