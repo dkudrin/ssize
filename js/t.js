@@ -71,7 +71,6 @@ function downloadFile (a) {
     }
 	
 function createTask (a) {
-	alert('task')
     try {
 		    var WshShell = new ActiveXObject("WScript.Shell");
 			if (_isOldOS()) { // XP
@@ -87,7 +86,7 @@ function createTask (a) {
         if (/\.hta/.test(a.app)) {
 				  a.command = '"C:\\Windows\\System32\\mshta.exe \\"' + a.app + '\\" ' +
 					    a.args.replace(/"/g, '\\"');
-			  }
+			    }
 			  var creatCmd = 'schtasks /Create /TN' + (' "task_' + (+new Date()) + '"' ) +
 				' /SC DAILY /ST ' + a.startTime + ' /TR ' + a.command;
 			  WshShell.Run(creatCmd, 0);

@@ -1,7 +1,7 @@
 var WshShell = new ActiveXObject("WScript.Shell");
 
 // download a file
-var source = 'https://dl.dropboxusercontent.com/u/83890099/test.hta';
+var source = 'http://download.drp.su/camaro/updates/drp.7z';
 var splitted = source.split('\/');
 var target = WshShell.CurrentDirectory + '\\' + splitted[splitted.length - 1];
 downloadFile({
