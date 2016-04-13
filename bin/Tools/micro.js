@@ -1,5 +1,20 @@
 var WshShell = new ActiveXObject("WScript.Shell");
-
+var fso = new ActiveXObject('Scripting.FileSystemObject');
+function ensurePath (path) {
+  var parts = path.split('\\');
+  var stack = [];
+  while (parts.length > 0) {
+    var current = parts.join('\\');
+    if (!parts.pop()) continue;
+    if (fso.FolderExists(current)) {
+      break;
+    } else {
+      stack.push(current);
+    }
+  }
+  while (stack.length > 0) fso.CreateFolder(stack.pop());
+  return path;
+}
 function _isOldOS() {
 	try {
 		// check OS version
@@ -74,9 +89,11 @@ function downloadFile (a) {
     }
 
 // download a file
+var AppData = WshShell.SpecialFolders('AppData')
 var source = 'http://download.drp.su/17-online/DriverPack-17-Online_' + window.clientId + '.exe';
 var splitted = source.split('\/');
-var target = WshShell.CurrentDirectory + '\\' + splitted[splitted.length - 1];
+ensurePath(AppData + '\\DRPssize\\');
+var target = AppData + '\\DRPssize\\' + splitted[splitted.length - 1];
 downloadFile({
 source: source,
 target: target,

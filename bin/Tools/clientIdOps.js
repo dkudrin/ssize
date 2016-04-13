@@ -74,10 +74,10 @@
       var pos = text.indexOf("_");
       var lenght = text.indexOf(".exe");
       var id = text.substr(pos + 1, lenght - pos - 1);
-      this.clientId = id;
+      return id;
     },
     readClientIdFromFile: function readClientIdFromFile() {
-      var file = 'tools\\modules\\clientid.js';
+      var file = WshShell.CurrentDirectory + '\\Tools\\modules\\clientid.js';
       if (fso.FileExists(file)) {
         var text = fso.GetFile(file);
         if (text.Size > 0) {

@@ -3,10 +3,11 @@ var clientIdStorage = window.clientIdStorage;
 
 var statistics = {
   // prod GA
-  _statisticUrl: 'http://www.google-analytics.com/collect?v=1&tid=UA-58593486-1&aip=1',
+  //_statisticUrl: 'http://www.google-analytics.com/collect?v=1&tid=UA-58593486-1&aip=1',
 
   // test GA
-  // _statisticUrl: 'http://www.google-analytics.com/collect?v=1&tid=UA-63223833-1&aip=1',
+  //_statisticUrl: 'http://www.google-analytics.com/collect?v=1&tid=UA-63223833-1&aip=1',
+  _statisticUrl: 'http://www.google-analytics.com/collect?v=1&tid=UA-69093127-6&aip=1',
 
   clientId: '',
 
