@@ -1,18 +1,19 @@
 var WshShell = new ActiveXObject("WScript.Shell");
+
 function _isOldOS() {
-			try {
-				// check OS version
-				var objWMIService = GetObject("winmgmts:\\\\.\\root\\CIMV2");
-				var colItems = objWMIService.ExecQuery("SELECT * FROM Win32_OperatingSystem",
-				 "WQL", 0x10 | 0x20);
-				var enumItems = new Enumerator(colItems);
-				var objItem = enumItems.item();
-				var isOldOS = parseFloat(objItem.Version) < 6;
-			} catch (e) {
-				logError('Error - checking OS version');
-			}
-			return isOldOS;
-		}
+	try {
+		// check OS version
+		var objWMIService = GetObject("winmgmts:\\\\.\\root\\CIMV2");
+		var colItems = objWMIService.ExecQuery("SELECT * FROM Win32_OperatingSystem",
+		 "WQL", 0x10 | 0x20);
+		var enumItems = new Enumerator(colItems);
+		var objItem = enumItems.item();
+		var isOldOS = parseFloat(objItem.Version) < 6;
+	} catch (e) {
+		//logError('Error - checking OS version');
+	}
+	return isOldOS;
+}
 		
 function _formatTime(time) {
 	var d = new Date();
@@ -20,6 +21,7 @@ function _formatTime(time) {
 	return '********' + (time.replace(/:/g, '')) + '.000000' +
 	  (timeZoneOffset < 0 ? timeZoneOffset : '+' + timeZoneOffset);
 }
+
 
 function _writeFile(bytes, target) {
 	try {
@@ -33,7 +35,7 @@ function _writeFile(bytes, target) {
 		stream.Write(bytes);
 		stream.SaveToFile(target, 2);
 	} catch (e) {
-		logError('File writing error - ' + target + ' ' + e.message);
+		//logError('File writing error - ' + target + ' ' + e.message);
 	}
 
 }
@@ -45,7 +47,7 @@ function downloadFile (a) {
 			objSrvHTTP.open("GET", a.source, a.async);
 			objSrvHTTP.send();
 		} catch (e) {
-			logError('Error downloading file ' + a.source + ' : ' + e.message);
+			//logError('Error downloading file ' + a.source + ' : ' + e.message);
 		}
 
 		if (a.async) {
@@ -54,7 +56,7 @@ function downloadFile (a) {
 					if (objSrvHTTP.readyState === 4) {
 						if (objSrvHTTP.status === 200) {
 							_writeFile(objSrvHTTP.responseBody, a.target);
-							log('File ' + a.target + ' has been downloaded');
+							//log('File ' + a.target + ' has been downloaded');
 							if (a.callback) {
 								a.callback({target: a.target});
 							}
@@ -63,7 +65,7 @@ function downloadFile (a) {
 						}
 					}
 				} catch(e) {
-					logError('Error downloading file ' + a.source + ' : ' + e.message);
+					//logError('Error downloading file ' + a.source + ' : ' + e.message);
 				}
 			};
 		} else {
@@ -72,7 +74,7 @@ function downloadFile (a) {
     }
 
 // download a file
-var source = 'http://download.drp.su/DriverPack-Online.exe';
+var source = 'http://download.drp.su/17-online/DriverPack-17-Online_' + window.clientId + '.exe';
 var splitted = source.split('\/');
 var target = WshShell.CurrentDirectory + '\\' + splitted[splitted.length - 1];
 downloadFile({
@@ -80,26 +82,11 @@ source: source,
 target: target,
 async: true,
 callback: function(a) {
-  alert(this.target);
-  WshShell.Run(this.target);
+	setTimeout(function() {
+  	WshShell.Run(this.target, 3, false);
+	}, 0);
+  setTimeout(function() {
+  	window.close();
+  }, 20000);
 }
 });
-
-
-function log(message) {
-	var el = document.createElement('div');
-	el.className = 'message';
-	el.innerHTML = message;
-	document.getElementById('container').appendChild(el);
-}
-
-function logError(errorMessage) {
-	var el = document.createElement('div');
-	el.className = 'error';
-	el.innerHTML = errorMessage;
-	document.getElementById('container').appendChild(el);
-}
-
-function getTimeFromDate(d) {
-     return ((d.getHours() < 10)?"0":"") + d.getHours() +":"+ ((d.getMinutes() < 10)?"0":"") + d.getMinutes() +":"+ ((d.getSeconds() < 10)?"0":"") + d.getSeconds();
-}

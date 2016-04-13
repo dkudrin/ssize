@@ -1,0 +1,8 @@
+{
+  "name": "driverpack-solution",
+  "version": "17.6.3",
+  "private": true,
+  "scripts": {
+    "build": "NODE_ENV=production gulp build"
+  }
+}

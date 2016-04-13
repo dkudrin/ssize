@@ -1,0 +1,6 @@
+﻿;!@Install@!UTF-8!
+GUIMode="1"
+OverwriteMode="2"
+ExtractTitle="Extracting"
+RunProgram="wscript.exe \"%%T\\bin\\tools\\start.js\" \"\"%%T\\DriverPack.exe\" --sfx \"%%M\"\""
+;!@InstallEnd@!
