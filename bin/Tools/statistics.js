@@ -36,7 +36,7 @@ var statistics = {
     var _ref$label = _ref.label;
     var label = _ref$label === undefined ? '' : _ref$label;
 
-    alert("event: " + category + " " + action + " " + label);
+    // alert("event: " + category + " " + action + " " + label);
     var url = this.compileUrl({ category: category, action: action, label: label });
     this._sendImg(url);
   }

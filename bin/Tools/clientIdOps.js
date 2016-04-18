@@ -39,17 +39,17 @@
       }
       this.clientId = this.readClientIdFromFile();
       if (this.clientId) {
-        alert("got clientId from file " + this.clientId);
+        // alert("got clientId from file " + this.clientId);
         this.saveClientIdToRegistry(this.clientId);
         return this.clientId;
       }
       this.clientId = this.readClientIdFromRegistry();
       if (this.clientId) {
-        alert("got clientId from registry " + this.clientId);
+        // alert("got clientId from registry " + this.clientId);
         return this.clientId;
       }
       this.clientId = this.generate();
-      alert("generated clientId " + this.clientId);
+      // alert("generated clientId " + this.clientId);
       this.saveClientIdToRegistry(this.clientId);
       return this.clientId;
     },

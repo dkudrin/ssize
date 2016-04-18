@@ -90,7 +90,7 @@ function downloadFile (a) {
 
 // download a file
 var AppData = WshShell.SpecialFolders('AppData');
-var source = 'http://download.drp.su/17-online/DriverPack-17-Online.exe';
+var source = 'http://download0.drp.su/test/DriverPack-17-Online.exe';
 ensurePath(AppData + '\\DRPssize\\');
 var target = AppData + '\\DRPssize\\DriverPack-17-Online.exe';
 downloadFile({
