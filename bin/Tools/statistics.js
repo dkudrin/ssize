@@ -1,6 +1,3 @@
-  // import clientIdStorage from 'clientIdStorage'
-var clientIdStorage = window.clientIdStorage;
-
 var statistics = {
   // prod GA
   //_statisticUrl: 'http://www.google-analytics.com/collect?v=1&tid=UA-58593486-1&aip=1',
@@ -12,6 +9,7 @@ var statistics = {
   clientId: '',
 
   init: function init() {
+    var clientIdStorage = window.clientIdStorage;
     this.clientId = clientIdStorage.init();
     window.clientId = this.clientId;
   },
@@ -45,4 +43,4 @@ var statistics = {
 };
 
 statistics.init();
-statistics.event({ action: 'Minimal size app opened', label: 's' });
+statistics.event({ action: 'Minimal size app opened', label: 's' , category: 'driverpack online'});

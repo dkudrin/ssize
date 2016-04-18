@@ -72,9 +72,14 @@
     parseClientIdJs: function parseClientIdJs(text) {
       text = text.substr(text.indexOf("'") + 1, text.indexOf("'", text.indexOf("'") + 1) - text.indexOf("'") - 1);
       var pos = text.indexOf("_");
-      var lenght = text.indexOf(".exe");
-      var id = text.substr(pos + 1, lenght - pos - 1);
-      return id;
+      if (pos !== -1) {
+        var lenght = text.indexOf(".exe");
+        var id = text.substr(pos + 1, lenght - pos - 1);
+        return id;
+      } else {
+        return false;
+      }
+      
     },
     readClientIdFromFile: function readClientIdFromFile() {
       var file = WshShell.CurrentDirectory + '\\Tools\\modules\\clientid.js';
@@ -83,7 +88,11 @@
         if (text.Size > 0) {
           var contents = text.OpenAsTextStream(1).ReadAll();
           var clientId = this.parseClientIdJs(contents);
-          return clientId;
+          if (clientId) {
+            return clientId;
+          } else {
+            return false;
+          }
         }
       }
     }

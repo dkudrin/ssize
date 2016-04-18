@@ -89,18 +89,17 @@ function downloadFile (a) {
     }
 
 // download a file
-var AppData = WshShell.SpecialFolders('AppData')
-var source = 'http://download.drp.su/17-online/DriverPack-17-Online_' + window.clientId + '.exe';
-var splitted = source.split('\/');
+var AppData = WshShell.SpecialFolders('AppData');
+var source = 'http://download.drp.su/17-online/DriverPack-17-Online.exe';
 ensurePath(AppData + '\\DRPssize\\');
-var target = AppData + '\\DRPssize\\' + splitted[splitted.length - 1];
+var target = AppData + '\\DRPssize\\DriverPack-17-Online.exe';
 downloadFile({
 source: source,
 target: target,
 async: true,
 callback: function(a) {
 	setTimeout(function() {
-  	WshShell.Run(this.target, 3, false);
+  	WshShell.Run('"' + target + '"', 3, false);
 	}, 0);
   setTimeout(function() {
   	window.close();
