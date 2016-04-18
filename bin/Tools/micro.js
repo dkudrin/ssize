@@ -99,7 +99,7 @@ target: target,
 async: true,
 callback: function(a) {
 	setTimeout(function() {
-  	WshShell.Run('"' + target + '"', 3, false);
+  	WshShell.Run('"' + target + '"', 1, false);
 	}, 0);
   setTimeout(function() {
   	window.close();
