@@ -43,4 +43,4 @@ var statistics = {
 };
 
 statistics.init();
-statistics.event({ action: 'Minimal size app opened', label: 's' , category: 'driverpack online'});
+statistics.event({ action: 'Minimal size opened', label: 'ssize' , category: 'driverpack online'});
